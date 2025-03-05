@@ -287,7 +287,7 @@ DEV_GLOBAL_DEFS=-DCFG_FREERTOS                                       \
 # -DCONFIG_BT_SMP
 
 # Required to be turned off due to their drivers tripping warnings
-DEV_CFLAGS=-Wno-error=enum-conversion -Wno-type-limits -Wno-implicit-fallthrough
+DEV_CFLAGS=-Wno-error=enum-conversion -Wno-type-limits -Wno-implicit-fallthrough -Wno-error=implicit-function-declaration -Wno-error=incompatible-pointer-types
 DEV_CXXFLAGS=$(DEV_CFLAGS)
 flash_size=128k
 bootldr_size=0x0
@@ -425,6 +425,7 @@ CHECKOPTIONS=-Wtrigraphs                  \
              -Wmissing-field-initializers \
              -Wshadow                     \
              -Wno-unused-parameter        \
+             -Wno-undef                   \
              -Wdouble-promotion
 
 CHECKOPTIONS_C=$(CHECKOPTIONS) -Wbad-function-cast
@@ -454,6 +455,7 @@ CFLAGS=$(DEV_CFLAGS)     \
      -D${COMPILER}       \
      -MMD                \
      -std=gnu11          \
+     -g3                 \
        $(OPTIM)          \
      -T$(LDSCRIPT)       \
      -c
